@@ -1,0 +1,136 @@
+// an ignored comment
+/** not an ignored comment */
+
+// This jdl is for the REGISTRY project.
+
+/**
+ * <b> App entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 17/11/2017
+ *
+ */
+entity App {
+	name String required,
+    description String,
+    version String,
+    imageBlob ImageBlob,
+    image String,
+    activated Boolean,
+    deleted Boolean
+}
+
+/**
+ * <b> Registry entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 21/11/2017
+ *
+ */
+entity Registry {
+	firstName String,
+    lastName String,
+    dni String,
+    birthdate LocalDate,
+    phoneNumber String,
+    business String,
+    occupation String,
+    email String required minlength(5) maxlength(100),
+    activationKey String,
+    validationCode String,
+    resetKey String,
+    resetDate Instant,
+    activated Boolean,
+    activationDate Instant,
+    deleted Boolean
+}
+
+/**
+ * <b> Key entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 17/11/2017
+ *
+ */
+entity Key {
+	code String required,
+    used Boolean,
+    deleted Boolean
+}
+
+/**
+ * <b> Category entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 17/11/2017
+ *
+ */
+entity Category {
+	name String required,
+    description String,
+    deleted Boolean
+}
+
+/**
+ * <b> Subcategory entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 17/11/2017
+ *
+ */
+entity Subcategory {
+	name String required,
+    description String,
+    deleted Boolean
+}
+
+/**
+ * <b> ValidationLog entity. </b>
+ *
+ * @author GWP (Osvaldo)
+ * @version 1.0
+ * @since 21/11/2017
+ *
+ */
+entity ValidationLog {
+	dateTime Instant,
+    latitude Float,
+    longitude Float,
+    success Boolean,
+    deleted Boolean
+}
+
+// defining ManyToOne unidirectional relationships
+relationship ManyToOne {
+    Registry{app(name)} to App,
+    Key{app(name)} to App,
+    Registry{subcategory(name)} to Subcategory,
+    App{subcategory(name)} to Subcategory,
+    Subcategory{category(name)} to Category,
+    ValidationLog{registry} to Registry
+}
+
+// defining OneToOne unidirectional relationships
+relationship OneToOne {
+	Key{registry} to Registry
+}
+
+// Set pagination options
+paginate * with pagination
+
+// With the following line I tell the jhipster generator to create the dto for all the entities with mapstruct 
+// con la siguiente linea le digo al generador de jhipster que cree los dto para todas las entities
+dto * with mapstruct
+
+// Set service options to all
+service all with serviceClass
+
+filter *
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
