@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="registry">
+            <h2><span>Registry</span> {{registry.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>First Name</span></dt>
+                <dd>
+                    <span>{{registry.firstName}}</span>
+                </dd>
+                <dt><span>Last Name</span></dt>
+                <dd>
+                    <span>{{registry.lastName}}</span>
+                </dd>
+                <dt><span>Dni</span></dt>
+                <dd>
+                    <span>{{registry.dni}}</span>
+                </dd>
+                <dt><span>Birthdate</span></dt>
+                <dd>
+                    <span>{{registry.birthdate}}</span>
+                </dd>
+                <dt><span>Phone Number</span></dt>
+                <dd>
+                    <span>{{registry.phoneNumber}}</span>
+                </dd>
+                <dt><span>Business</span></dt>
+                <dd>
+                    <span>{{registry.business}}</span>
+                </dd>
+                <dt><span>Occupation</span></dt>
+                <dd>
+                    <span>{{registry.occupation}}</span>
+                </dd>
+                <dt><span>Email</span></dt>
+                <dd>
+                    <span>{{registry.email}}</span>
+                </dd>
+                <dt><span>Activation Key</span></dt>
+                <dd>
+                    <span>{{registry.activationKey}}</span>
+                </dd>
+                <dt><span>Validation Code</span></dt>
+                <dd>
+                    <span>{{registry.validationCode}}</span>
+                </dd>
+                <dt><span>Reset Key</span></dt>
+                <dd>
+                    <span>{{registry.resetKey}}</span>
+                </dd>
+                <dt><span>Reset Date</span></dt>
+                <dd>
+                    <span>{{registry.resetDate}}</span>
+                </dd>
+                <dt><span>Activated</span></dt>
+                <dd>
+                    <span>{{registry.activated}}</span>
+                </dd>
+                <dt><span>Activation Date</span></dt>
+                <dd>
+                    <span>{{registry.activationDate}}</span>
+                </dd>
+                <dt><span>Deleted</span></dt>
+                <dd>
+                    <span>{{registry.deleted}}</span>
+                </dd>
+                <dt><span>App</span></dt>
+                <dd>
+                    <div *ngIf="registry.appId">
+                        <a [routerLink]="['/app', registry.appId, 'view']">{{registry.appName}}</a>
+                    </div>
+                </dd>
+                <dt><span>Subcategory</span></dt>
+                <dd>
+                    <div *ngIf="registry.subcategoryId">
+                        <a [routerLink]="['/subcategory', registry.subcategoryId, 'view']">{{registry.subcategoryName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/registry', registry.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

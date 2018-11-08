@@ -1,0 +1,96 @@
+{
+    "name": "Registry",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dni",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "birthdate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "business",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "occupation",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 5,
+            "fieldValidateRulesMaxlength": 100
+        },
+        {
+            "fieldName": "activationKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "validationCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resetKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "resetDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "activated",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "activationDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "app",
+            "otherEntityName": "app",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "subcategory",
+            "otherEntityName": "subcategory",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181108145103",
+    "javadoc": "<b> Registry entity. </b>\n\n@author GWP (Osvaldo)\n@version 1.0\n@since 21/11/2017",
+    "entityTableName": "registry",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

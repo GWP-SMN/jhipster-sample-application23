@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="key">
+            <h2><span>Key</span> {{key.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Code</span></dt>
+                <dd>
+                    <span>{{key.code}}</span>
+                </dd>
+                <dt><span>Used</span></dt>
+                <dd>
+                    <span>{{key.used}}</span>
+                </dd>
+                <dt><span>Deleted</span></dt>
+                <dd>
+                    <span>{{key.deleted}}</span>
+                </dd>
+                <dt><span>Registry</span></dt>
+                <dd>
+                    <div *ngIf="key.registryId">
+                        <a [routerLink]="['/registry', key.registryId, 'view']">{{key.registryId}}</a>
+                    </div>
+                </dd>
+                <dt><span>App</span></dt>
+                <dd>
+                    <div *ngIf="key.appId">
+                        <a [routerLink]="['/app', key.appId, 'view']">{{key.appName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/key', key.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

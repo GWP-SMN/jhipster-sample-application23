@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-key-heading">Create or edit a Key</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!key.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="key.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_code">Code</label>
+                    <input type="text" class="form-control" name="code" id="field_code"
+                        [(ngModel)]="key.code" required/>
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.code?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_used">Used</label>
+                    <input type="checkbox" class="form-control" name="used" id="field_used"
+                        [(ngModel)]="key.used" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                        [(ngModel)]="key.deleted" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_registry">Registry</label>
+                    <select class="form-control" id="field_registry" name="registry" [(ngModel)]="key.registryId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="registryOption.id" *ngFor="let registryOption of registries; trackBy: trackRegistryById">{{registryOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_app">App</label>
+                    <select class="form-control" id="field_app" name="app" [(ngModel)]="key.appId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appOption.id" *ngFor="let appOption of apps; trackBy: trackAppById">{{appOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

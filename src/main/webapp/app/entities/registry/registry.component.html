@@ -1,0 +1,102 @@
+<div>
+    <h2 id="page-heading">
+        <span>Registries</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-registry" [routerLink]="['/registry/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Registry
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="registries">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="firstName"><span>First Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastName"><span>Last Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="dni"><span>Dni</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="birthdate"><span>Birthdate</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="phoneNumber"><span>Phone Number</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="business"><span>Business</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="occupation"><span>Occupation</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="email"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="activationKey"><span>Activation Key</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="validationCode"><span>Validation Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resetKey"><span>Reset Key</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resetDate"><span>Reset Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="activated"><span>Activated</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="activationDate"><span>Activation Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deleted"><span>Deleted</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="appName"><span>App</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="subcategoryName"><span>Subcategory</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let registry of registries ;trackBy: trackId">
+                <td><a [routerLink]="['/registry', registry.id, 'view' ]">{{registry.id}}</a></td>
+                <td>{{registry.firstName}}</td>
+                <td>{{registry.lastName}}</td>
+                <td>{{registry.dni}}</td>
+                <td>{{registry.birthdate | date:'mediumDate'}}</td>
+                <td>{{registry.phoneNumber}}</td>
+                <td>{{registry.business}}</td>
+                <td>{{registry.occupation}}</td>
+                <td>{{registry.email}}</td>
+                <td>{{registry.activationKey}}</td>
+                <td>{{registry.validationCode}}</td>
+                <td>{{registry.resetKey}}</td>
+                <td>{{registry.resetDate | date:'medium'}}</td>
+                <td>{{registry.activated}}</td>
+                <td>{{registry.activationDate | date:'medium'}}</td>
+                <td>{{registry.deleted}}</td>
+                <td>
+                    <div *ngIf="registry.appId">
+                        <a [routerLink]="['../app', registry.appId , 'view' ]" >{{registry.appName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="registry.subcategoryId">
+                        <a [routerLink]="['../subcategory', registry.subcategoryId , 'view' ]" >{{registry.subcategoryName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/registry', registry.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/registry', registry.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'registry/'+ registry.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="registries && registries.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

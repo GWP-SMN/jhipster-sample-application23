@@ -1,0 +1,43 @@
+{
+    "name": "ValidationLog",
+    "fields": [
+        {
+            "fieldName": "dateTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "success",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "registry",
+            "otherEntityName": "registry",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20181108145107",
+    "javadoc": "<b> ValidationLog entity. </b>\n\n@author GWP (Osvaldo)\n@version 1.0\n@since 21/11/2017",
+    "entityTableName": "validation_log",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

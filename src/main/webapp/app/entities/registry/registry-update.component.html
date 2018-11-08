@@ -1,0 +1,136 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-registry-heading">Create or edit a Registry</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!registry.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="registry.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                        [(ngModel)]="registry.firstName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                        [(ngModel)]="registry.lastName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dni">Dni</label>
+                    <input type="text" class="form-control" name="dni" id="field_dni"
+                        [(ngModel)]="registry.dni" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_birthdate">Birthdate</label>
+                    <div class="input-group">
+                        <input id="field_birthdate" type="text" class="form-control" name="birthdate" ngbDatepicker  #birthdateDp="ngbDatepicker" [(ngModel)]="registry.birthdate"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="birthdateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                        [(ngModel)]="registry.phoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_business">Business</label>
+                    <input type="text" class="form-control" name="business" id="field_business"
+                        [(ngModel)]="registry.business" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_occupation">Occupation</label>
+                    <input type="text" class="form-control" name="occupation" id="field_occupation"
+                        [(ngModel)]="registry.occupation" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                        [(ngModel)]="registry.email" required minlength="5" maxlength="100"/>
+                    <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.minlength">
+                        This field is required to be at least 5 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.email?.errors?.maxlength">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_activationKey">Activation Key</label>
+                    <input type="text" class="form-control" name="activationKey" id="field_activationKey"
+                        [(ngModel)]="registry.activationKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_validationCode">Validation Code</label>
+                    <input type="text" class="form-control" name="validationCode" id="field_validationCode"
+                        [(ngModel)]="registry.validationCode" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_resetKey">Reset Key</label>
+                    <input type="text" class="form-control" name="resetKey" id="field_resetKey"
+                        [(ngModel)]="registry.resetKey" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_resetDate">Reset Date</label>
+                    <div class="d-flex">
+                        <input id="field_resetDate" type="datetime-local" class="form-control" name="resetDate" [(ngModel)]="resetDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_activated">Activated</label>
+                    <input type="checkbox" class="form-control" name="activated" id="field_activated"
+                        [(ngModel)]="registry.activated" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_activationDate">Activation Date</label>
+                    <div class="d-flex">
+                        <input id="field_activationDate" type="datetime-local" class="form-control" name="activationDate" [(ngModel)]="activationDate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_deleted">Deleted</label>
+                    <input type="checkbox" class="form-control" name="deleted" id="field_deleted"
+                        [(ngModel)]="registry.deleted" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_app">App</label>
+                    <select class="form-control" id="field_app" name="app" [(ngModel)]="registry.appId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appOption.id" *ngFor="let appOption of apps; trackBy: trackAppById">{{appOption.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_subcategory">Subcategory</label>
+                    <select class="form-control" id="field_subcategory" name="subcategory" [(ngModel)]="registry.subcategoryId" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="subcategoryOption.id" *ngFor="let subcategoryOption of subcategories; trackBy: trackSubcategoryById">{{subcategoryOption.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{
+    "name": "Key",
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "used",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "registry",
+            "otherEntityName": "registry",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "key"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "app",
+            "otherEntityName": "app",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181108145104",
+    "javadoc": "<b> Key entity. </b>\n\n@author GWP (Osvaldo)\n@version 1.0\n@since 17/11/2017",
+    "entityTableName": "key",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

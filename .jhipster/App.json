@@ -1,0 +1,55 @@
+{
+    "name": "App",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "imageBlob",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activated",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "deleted",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "subcategory",
+            "otherEntityName": "subcategory",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20181108145102",
+    "javadoc": "<b> App entity. </b>\n\n@author GWP (Osvaldo)\n@version 1.0\n@since 17/11/2017",
+    "entityTableName": "app",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
