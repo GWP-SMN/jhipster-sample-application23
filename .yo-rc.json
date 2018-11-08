@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "gitCompany": "",
+    "baseName": "jhipsterSampleApplicationWithGradle",
+    "packageName": "com.openix.prueba23",
+    "packageFolder": "com/openix/prueba23",
+    "serverPort": 8080,
+    "serviceDiscoveryType": false,
+    "authenticationType": "jwt",
+    "uaaBaseName": "../uaa",
+    "cacheProvider": "no",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "enableSwaggerCodegen": false,
+    "messageBroker": false,
+    "buildTool": "gradle",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "enableTranslation": false,
+    "nativeLanguage": "en",
+    "languages": [
+      "en"
+    ],
+    "clientFramework": "angularX",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "5.6.1",
+    "jwtSecretKey": "MWM1MjdlNzdjYzYwZmE3MzU1NzdlMmU2NWU4MDA0MjEyYmI5ZTQyZmE5ZDEwNjdjMmFlYTE4YzQxNzE3M2MxNjE2MGVjYmNkMGRlODA2OWUyY2I5OGQ2YjhiNjgwYzEyNzliNjJmYTY4MTkzZGI1ZWNkMjQ5ODgwYjQ1Nzg5ZGI="
+  },
+  "git-provider": "GitHub",
+  "git-company": "GWP-SMN",
+  "repository-name": "jhipster-sample-application23"
+}
