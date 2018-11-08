@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Key.
+    -->
+    <changeSet id="20181108145104-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="registry_id"
+                                 baseTableName="key"
+                                 constraintName="fk_key_registry_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="registry"/>
+
+        <addForeignKeyConstraint baseColumnNames="app_id"
+                                 baseTableName="key"
+                                 constraintName="fk_key_app_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="app"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="validationLog">
+            <h2><span>Validation Log</span> {{validationLog.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Date Time</span></dt>
+                <dd>
+                    <span>{{validationLog.dateTime}}</span>
+                </dd>
+                <dt><span>Latitude</span></dt>
+                <dd>
+                    <span>{{validationLog.latitude}}</span>
+                </dd>
+                <dt><span>Longitude</span></dt>
+                <dd>
+                    <span>{{validationLog.longitude}}</span>
+                </dd>
+                <dt><span>Success</span></dt>
+                <dd>
+                    <span>{{validationLog.success}}</span>
+                </dd>
+                <dt><span>Deleted</span></dt>
+                <dd>
+                    <span>{{validationLog.deleted}}</span>
+                </dd>
+                <dt><span>Registry</span></dt>
+                <dd>
+                    <div *ngIf="validationLog.registryId">
+                        <a [routerLink]="['/registry', validationLog.registryId, 'view']">{{validationLog.registryId}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/validation-log', validationLog.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
